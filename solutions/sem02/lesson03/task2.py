@@ -27,16 +27,12 @@ def convert_to_sphere(
         raise ShapeMismatchError
     
     r = np.sqrt(abscissa**2 + ordinates**2 + applicates**2)
-    if np.all(r == 0):
-        return False
-    if r[r!=0].shape != r.shape:
-        mask = r.copy()
-        mask[mask!=0] = 1
-        mask[mask== 0] = 0
-        r[r==0] = 1
-        applicates *= mask   
+  
     phi = np.arctan2(ordinates, abscissa)
-    teta = np.arccos(applicates / r)
+    
+    teta = np.zeros(r.shape)
+    mask = r != 0
+    teta[mask] = np.arccos(applicates[mask] / r[mask])
     
     return(r, phi, teta)
 
