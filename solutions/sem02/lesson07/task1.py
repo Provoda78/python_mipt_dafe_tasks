@@ -110,4 +110,4 @@ if __name__ == "__main__":
     visualize_diagrams(abscissa, ordinates, "hist")
 
     plt.savefig("plot.png")
-    #plt.show()
+    # plt.show()
